@@ -6,9 +6,15 @@ As a user selects stations, the top 5 most recently played will be logged in a l
 
 Enjoy!
 
+NOTE: For the best experience, run in incognito window (I make a request for a TuneIn SVG that fails due to CORS rules unless on incognito!)  
+
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+Install all the package dependencies required to run the application.
 
 ### `npm start`
 

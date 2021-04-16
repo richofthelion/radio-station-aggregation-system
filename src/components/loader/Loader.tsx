@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components/macro';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 //
 // --- Types ---
@@ -23,17 +23,21 @@ const StyledPageLevelLoader = styled(FontAwesomeIcon)`
 `;
 
 const StyledLocalLoader = styled(FontAwesomeIcon)`
-    z-index: 99;
+  z-index: 99;
 `;
 
 export const Loader: React.FunctionComponent<LoaderProps> = (props) => {
-  const renderLoader = useMemo(() => props.pageLevelLoader ? (
-    <StyledPageLevelLoader size='6x' icon="spinner" spin />
-  ) : (
-    <StyledLocalLoader size='2x' icon="spinner" spin />
-  ), [props.pageLevelLoader]);
+  const renderLoader = useMemo(
+    () =>
+      props.pageLevelLoader ? (
+        <StyledPageLevelLoader size="6x" icon="spinner" spin />
+      ) : (
+        <StyledLocalLoader size="2x" icon="spinner" spin />
+      ),
+    [props.pageLevelLoader]
+  );
 
-  return (renderLoader);
-}
+  return renderLoader;
+};
 
 export default Loader;

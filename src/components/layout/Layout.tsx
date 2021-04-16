@@ -1,7 +1,7 @@
-import React, { useMemo }  from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
-import { ReactSVG } from 'react-svg'
+import { ReactSVG } from 'react-svg';
 
 //
 // --- Constants ---
@@ -9,8 +9,8 @@ import { ReactSVG } from 'react-svg'
 const TRANSITION_DURATION = '500ms';
 const TRANSITION_STYLE = 'ease-out';
 const TUNEIN_GREEN = '#14d8cc';
-const BREAKPOINT = '992px'
-const SIDE_BAR_WIDTH = '200px'
+const BREAKPOINT = '992px';
+const SIDE_BAR_WIDTH = '200px';
 const TOP_NAV_HEIGHT = '65px';
 
 //
@@ -20,7 +20,6 @@ const StyledLayout = styled.div`
   display: flex;
   height: 100%;
   flex-direction: row;
-
 `;
 
 const StyledMainContent = styled.div`
@@ -59,7 +58,6 @@ const StyledSideBar = styled.div`
   }
 `;
 
-
 const StyledTopNav = styled.div`
   transition-property: transform;
   transition-duration: ${TRANSITION_DURATION};
@@ -95,29 +93,26 @@ const StyledLogo = styled(ReactSVG)`
 `;
 
 export const Layout: React.FunctionComponent = ({ children }) => {
-  const navLogo = useMemo(() => (
-    <nav>
-      <Link to={`/radio/home`}>
-        <StyledLogo src='https://cdn-web.tunein.com/assets/img/footer/tunein-logo-ink.svg' />
-      </Link>
-    </nav>
-  ), []);
+  const navLogo = useMemo(
+    () => (
+      <nav>
+        <Link to={`/radio/home`}>
+          <StyledLogo src="https://cdn-web.tunein.com/assets/img/footer/tunein-logo-ink.svg" />
+        </Link>
+      </nav>
+    ),
+    []
+  );
 
   return (
     <>
-     <StyledTopNav>
-        {navLogo}
-     </StyledTopNav>
-     <StyledLayout>
-       <StyledSideBar>
-          {navLogo}
-       </StyledSideBar>
-       <StyledMainContent>
-          {children}
-      </StyledMainContent>
-     </StyledLayout>
+      <StyledTopNav>{navLogo}</StyledTopNav>
+      <StyledLayout>
+        <StyledSideBar>{navLogo}</StyledSideBar>
+        <StyledMainContent>{children}</StyledMainContent>
+      </StyledLayout>
     </>
   );
-}
+};
 
 export default Layout;

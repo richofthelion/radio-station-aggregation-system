@@ -18,6 +18,7 @@ body {
 }
 
 /* use viewport-relative units to cover page fully */
-body, #root {
+body,
+#root {
   height: 100%;
 }

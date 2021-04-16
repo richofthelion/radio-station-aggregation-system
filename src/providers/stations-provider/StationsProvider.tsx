@@ -33,14 +33,19 @@ export type RecentStationsContextType = {
 // --- Helpers ---
 
 const stationsInitialState: StationsContextType = { stations: [], setStations: undefined };
-const isFetchingStationsContext: IsFetchingStationsContextType = { isFetchingStations: false, setIsFetchingStations: undefined };
+const isFetchingStationsContext: IsFetchingStationsContextType = {
+  isFetchingStations: false,
+  setIsFetchingStations: undefined,
+};
 const recentStationsInitialState: RecentStationsContextType = {
   recentStations: [],
   setRecentStations: undefined,
 };
 
 const StationsContext = createContext<StationsContextType>(stationsInitialState);
-const IsFetchingStationsContext = createContext<IsFetchingStationsContextType>(isFetchingStationsContext);
+const IsFetchingStationsContext = createContext<IsFetchingStationsContextType>(
+  isFetchingStationsContext
+);
 const RecentStationsContext = createContext<RecentStationsContextType>(recentStationsInitialState);
 
 const useIsFetchingStations = (): IsFetchingStationsContextType => {

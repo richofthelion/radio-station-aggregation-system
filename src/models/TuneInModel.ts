@@ -18,21 +18,18 @@ export interface TuneInStationData {
 export enum ContentGenreEnum {
   MUSIC = 'music',
   NEWS = 'news',
-  SPORTS = 'sports'
+  SPORTS = 'sports',
 }
 
-export type ContentGenreType =
-  | 'music'
-  | 'news'
-  | 'sports';
+export type ContentGenreType = 'music' | 'news' | 'sports';
 
 //
 // -- FontAwesome Genre Icon Enum --
 
 export const FontAwesomeGenreIconMapping: {
-  readonly [genre in ContentGenreType]: string
+  readonly [genre in ContentGenreType]: string;
 } = {
   music: 'music',
   news: 'newspaper',
-  sports: 'futbol'
+  sports: 'futbol',
 };

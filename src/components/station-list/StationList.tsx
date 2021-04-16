@@ -38,9 +38,7 @@ export const StationList: React.FunctionComponent<StationListProps> = (props) =>
       stationList.map((station) => {
         const { id, imgUrl, name } = station;
 
-        return (
-          <StationTile id={id} imgUrl={imgUrl} name={name} key={`station-id-${id}`} />
-        );
+        return <StationTile id={id} imgUrl={imgUrl} name={name} key={`station-id-${id}`} />;
       }),
     [stationList]
   );

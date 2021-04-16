@@ -73,7 +73,9 @@ export const StationPage: React.FunctionComponent = () => {
     return null;
   }
 
-  const stationTags = featuredStation.tags?.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1));
+  const stationTags = featuredStation.tags?.map(
+    (tag) => tag.charAt(0).toUpperCase() + tag.slice(1)
+  );
 
   return (
     <StyledStationPage className="station-page" data-component="StationPage">
@@ -90,11 +92,15 @@ export const StationPage: React.FunctionComponent = () => {
         </StyledDivider>
         <StyledStationMetaData>
           <StyledMetaCategory>
-            <span><strong>Description:</strong></span>
+            <span>
+              <strong>Description:</strong>
+            </span>
             <span>{featuredStation.description}</span>
           </StyledMetaCategory>
           <StyledMetaCategory>
-            <span><strong>Genres:</strong></span>
+            <span>
+              <strong>Genres:</strong>
+            </span>
             <span>{stationTags.join(', ')}</span>
           </StyledMetaCategory>
         </StyledStationMetaData>

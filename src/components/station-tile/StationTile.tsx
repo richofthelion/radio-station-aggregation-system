@@ -36,9 +36,8 @@ const StyledTileName = styled.span<StyledStationTileProps>`
   font-size: ${(props) => (props.stationPage ? '24px' : '16px')};
 `;
 
-
 const FlexTile = styled.div<StyledStationTileProps>`
-  max-width: ${(props) => (props.width)};
+  max-width: ${(props) => props.width};
   display: flex;
   height: auto;
   flex-direction: column;
@@ -50,7 +49,7 @@ const FlexTile = styled.div<StyledStationTileProps>`
 const StyledLink = styled(Link)`
   ${iconOpacity}
   &:hover > .play-icon {
-    opacity: .6;
+    opacity: 0.6;
   }
 `;
 
@@ -72,21 +71,20 @@ export const StationTile: React.FunctionComponent<StationTileProps> = (props) =>
   const { id, stationPage, imgUrl, name } = props;
   const width = stationPage ? '160px' : '100px';
 
-  const tileImage = useMemo(() => (
-    <>
-      <StyledTileImage width={width} imgUrl={imgUrl} alt={name} />
-      <PlayIcon className="play-icon" size="1x" icon='play' />
-    </>
-  ), [name, imgUrl, width]);
+  const tileImage = useMemo(
+    () => (
+      <>
+        <StyledTileImage width={width} imgUrl={imgUrl} alt={name} />
+        <PlayIcon className="play-icon" size="1x" icon="play" />
+      </>
+    ),
+    [name, imgUrl, width]
+  );
 
   return (
     <FlexTile width={width} className="station-tile" data-component="StationTile">
       <Suspense fallback={<Loader />}>
-        {stationPage ? tileImage : (
-          <StyledLink to={`/radio/${id}`}>
-            {tileImage}
-          </StyledLink>
-        )}
+        {stationPage ? tileImage : <StyledLink to={`/radio/${id}`}>{tileImage}</StyledLink>}
         <StyledTileName stationPage={stationPage}>{name}</StyledTileName>
       </Suspense>
     </FlexTile>

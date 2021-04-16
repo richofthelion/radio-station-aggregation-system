@@ -9,14 +9,20 @@ import GenreIcon from 'components/genre-icon/GenreIcon';
 import Layout from 'components/layout/Layout';
 import Loader from 'components/loader/Loader';
 import StationList from 'components/station-list/StationList';
-import { useIsFetchingStations, useRecentStations, useStations } from 'providers/stations-provider/StationsProvider';
+import {
+  useIsFetchingStations,
+  useRecentStations,
+  useStations,
+} from 'providers/stations-provider/StationsProvider';
 
 //
 // --- Types ---
 
-type GenreTagMap = Partial<{
-  [key in ContentGenreType]: string[]
-}>;
+type GenreTagMap = Partial<
+  {
+    [key in ContentGenreType]: string[];
+  }
+>;
 
 //
 // --- Styled Components ---
@@ -74,25 +80,32 @@ export const HomePage: React.FunctionComponent = () => {
       }
     };
 
-    stations.forEach(station => {
-      genreList.forEach(genre => {
+    stations.forEach((station) => {
+      genreList.forEach((genre) => {
         pushContentId(station, genre);
-      })
+      });
     });
 
     return genreTagMap;
   }, [genreList, stations]);
 
   const genreTagMap = useMemo((): GenreTagMap => runTaggingMap(), [runTaggingMap]);
-  const activeGenreKeys = useMemo((): ContentGenreType[] => Object.keys(genreTagMap) as ContentGenreType[], [genreTagMap]);
+  const activeGenreKeys = useMemo(
+    (): ContentGenreType[] => Object.keys(genreTagMap) as ContentGenreType[],
+    [genreTagMap]
+  );
 
-  const activeGenreIconList = useMemo(() => activeGenreKeys.map((genre: ContentGenreType) => {
-    return (
-      <StyledGenreIconWrapper key={`${genre}-icon`}  onClick={() => setSelectedGenre(genre)}>
-        <GenreIcon genre={genre} />
-      </StyledGenreIconWrapper>
-    )
-  }), [activeGenreKeys, setSelectedGenre]);
+  const activeGenreIconList = useMemo(
+    () =>
+      activeGenreKeys.map((genre: ContentGenreType) => {
+        return (
+          <StyledGenreIconWrapper key={`${genre}-icon`} onClick={() => setSelectedGenre(genre)}>
+            <GenreIcon genre={genre} />
+          </StyledGenreIconWrapper>
+        );
+      }),
+    [activeGenreKeys, setSelectedGenre]
+  );
 
   const createStationList = useCallback(
     (listIds?: string[]): TuneInStationData[] => {
@@ -117,7 +130,7 @@ export const HomePage: React.FunctionComponent = () => {
     [stations]
   );
   const activeGenreStations = useMemo(
-    (): TuneInStationData[] => selectedGenre ? createStationList(genreTagMap[selectedGenre]) : [],
+    (): TuneInStationData[] => (selectedGenre ? createStationList(genreTagMap[selectedGenre]) : []),
     [createStationList, genreTagMap, selectedGenre]
   );
 
@@ -132,20 +145,25 @@ export const HomePage: React.FunctionComponent = () => {
             {recentStations.length > 0 && (
               <StationList listName="Recent Stations" stationList={activeRecentStations} />
             )}
-            <StationList listName="Most Popular Stations" stationList={activePopularStations.slice(0, 5)} />
+            <StationList
+              listName="Most Popular Stations"
+              stationList={activePopularStations.slice(0, 5)}
+            />
             <h2>What Do You Want To Listen To?</h2>
             {selectedGenre ? (
               <>
                 <StyledBackArrowText>
-                  <StyledIcon size="2x" icon='long-arrow-alt-left' onClick={() => setSelectedGenre(undefined)}/>
+                  <StyledIcon
+                    size="2x"
+                    icon="long-arrow-alt-left"
+                    onClick={() => setSelectedGenre(undefined)}
+                  />
                   See all Genres
                 </StyledBackArrowText>
                 <StationList listName={selectedGenre} stationList={activeGenreStations} />
               </>
             ) : (
-              <StyledGenreIconList>
-                {activeGenreIconList}
-              </StyledGenreIconList>
+              <StyledGenreIconList>{activeGenreIconList}</StyledGenreIconList>
             )}
           </>
         )}

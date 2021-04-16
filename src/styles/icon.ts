@@ -6,6 +6,6 @@ export const iconOpacity = css`
   transition: 0.5s;
 
   &:hover {
-    opacity: .6;
+    opacity: 0.6;
   }
-`
+`;

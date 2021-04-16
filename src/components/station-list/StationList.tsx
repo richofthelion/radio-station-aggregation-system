@@ -31,8 +31,6 @@ const FlexList = styled.div`
 export const StationList: React.FunctionComponent<StationListProps> = (props) => {
   const { listName, stationList } = props;
 
-  console.log('stationList', stationList);
-
   const renderedStationTiles = useMemo(
     () =>
       stationList.map((station) => {

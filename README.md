@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# Interfacing with the app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a mobile responsive, radio station aggregation application. It consists of two main pages, a home and a detail page. Home will provide a variety of ways to discover an available station. Clicking on the station will open up a station detail page, where the station will begin to play (if available).
+
+As a user selects stations, the top 5 most recently played will be logged in a list on the home page.
+
+Enjoy!
 
 ## Available Scripts
 

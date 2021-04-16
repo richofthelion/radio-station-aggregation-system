@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch, Redirect, Route } from 'react-router-dom';
 
-function App() {
+// Pages
+import HomePage from 'components/page/HomePage';
+import StationPage from 'components/page/StationPage';
+
+// Providers
+import { StationsProvider } from 'providers/stations-provider/StationsProvider';
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StationsProvider>
+      <Router>
+        <Switch>
+          <Route exact path="/radio/home">
+            <HomePage />
+          </Route>
+          <Route exact path="/radio/:id" children={<StationPage />} />
+          <Route path="/*">
+            <Redirect to="/radio/home" />
+          </Route>
+        </Switch>
+      </Router>
+    </StationsProvider>
   );
 }
-
-export default App;
